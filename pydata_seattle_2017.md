@@ -8,7 +8,7 @@ fascinating.
 * cvxopt provides a qp method
 
 
-```
+```py
 from bokeh.charts import Scatter, output_notebook, show
 output_notebook()
 
@@ -21,7 +21,7 @@ works for this form of regressions.
 
 This next example is more general that will work for all quadratic models
 instead of just our specific example.
-```
+```py
 from bokeh.charts import show
 y_hat = [beta[0]*xi**2 + beta[1]*xi + beta[2] for xi in x]
 show(Line({'x': x, 'y': y_hat}, x='x', y='y', width=750, height=400))
@@ -35,12 +35,12 @@ show(Line({'x': x, 'y': y_hat}, x='x', y='y', width=750, height=400))
 * data.seattle.gov/Permitting/Special-Events-Permits/dm95-f8w5
 * The goal of the talk is to make a Binary model about an event being complete
 or not. Features are all columns in the dataset.
-```
+```py
 from sklearn.model_selection import train_test_split
 df_train, df_test = train_test_split(df)
 ```
 
-```
+```py
 from sklearn.linear_model import LogisticRegression
 model = LogisticRegression() # No meta variables
 
@@ -49,7 +49,7 @@ p_baseline = [y_train.mean()] * len(y_test)
 p_pred_test = model.predict_proba(x_test)[:, 1]
 ```
 
-```
+```py
 from sklearn.metrics import roc_auc_score # Not sure what this means
 ```
 
@@ -58,7 +58,7 @@ from sklearn.metrics import roc_auc_score # Not sure what this means
 * A common transformation is `StandardScaler`. `fit` finds the mean, stadard
 deviation of each. `transform` subtracts mean, then divide standard deviation.
 
-```
+```py
 from sklearn.preprocessing import imputer, PolynomialFeatures, StandardScaler
 from sklearn.pipeline import Pipeline
 pipeline = Pipeline([
@@ -70,7 +70,7 @@ pipeline = Pipeline([
 * zack Stuart blog post about scikitlearn pipelines
 
 ## Example Pipeline
-```
+```py
 df_train.event_location_park.value_counts(dropna=False).head())
 df_train.attendance.isnull().sum()
 x = df_train.attendance
@@ -82,7 +82,7 @@ x = df_train.attendance
 * **NOTE: One of my goals for next week is to recreate this talk on my own
 without looking at her talk to learn from this.**
 
-```
+```py
 from sklearn.base import TransformerMixin
 class Log1pTransformer(TransformerMixin):
 
@@ -110,7 +110,7 @@ class DummyTransformer(TransformerMixin):
 * Pipelines are already pandas friendly. We can write scikitlearn transformers
 to return pandas DataFrames
 
-```
+```py
 class DFStandardScalar(
 # TODO: Fill this in to remember what this does
 ```
